@@ -1,0 +1,23 @@
+{
+  "name": "dataProcessor",
+  "version": "0.0.0",
+  "description": "Pre process a tsv data file por xy visualization",
+  "main": "generate.js",
+  "dependencies": {
+    "underscore": "~1.6.0",
+    "d3": "~3.4.6",
+    "lazy": "~1.0.11",
+    "q":"*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "tsv",
+    "data",
+    "visualization"
+  ],
+  "author": "Ernesto Laval",
+  "license": "mit"
+}

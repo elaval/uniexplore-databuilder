@@ -7,7 +7,8 @@ var d3 = require("d3");
 var fs  = require("fs");
 var Q = require("q");
 
-var filename = "./inputData/v_output_estudiantes_x_carreras_extendido_areas.txt";
+var indir = "./inputData";
+var filename = "./inputData/estudiantes_x_carrera.txt";
 var outdir="./data/carreras/";
 var cursosfilename = "./data/carreras.txt";
 
@@ -17,7 +18,7 @@ var data = [];
 
 //var output_properties = ["id", "semestre", "genero", "sigla",  "unidad_academ_curso", "carrera", "unidad", "ano_ingreso", "prom_paa", "dependencia", "nota_final", "actividades_sakai", "actividades_aleph", "actividades_ezproxy"];
 
-var output_properties = ["id","semestre","genero","unidad","carrera","area", "area_oecd","ano_ficha", "agnosEnCarrera","prom_paa","ptje_pond_selec","dependencia","prom_notas","actividades_sakai","actividades_aleph","actividades_ezproxy"];
+var output_properties = ["id","semestre","genero","unidad","carrera","area", "area_oecd","ano_ingreso", "agnosEnCarrera","prom_paa","dependencia","promedio_notas","actividades_sakai","actividades_aleph","actividades_ezproxy"];
 
 
 var notify = function(msg) {
@@ -147,7 +148,7 @@ processor.dataSetup = function(data) {
 			d.dependencia = "S/I";
 		}
 
-		d.agnosEnCarrera = d.ano-d.ano_ficha+1;
+		d.agnosEnCarrera = d.ano-d.ano_ingreso+1;
 
 	});
 

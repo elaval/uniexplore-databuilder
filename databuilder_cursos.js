@@ -7,7 +7,7 @@ var d3 = require("d3");
 var fs  = require("fs");
 var Q = require("q");
 
-var filename = "./inputData/v_output_estudiantes_x_curso_extendido.txt";
+var filename = "./inputData/estudiantes_x_curso.txt";
 var outdir="./data/cursos/";
 var cursosfilename = "./data/cursos.txt";
 
@@ -129,8 +129,6 @@ processor.dataSetup = function(data) {
 		} else {
 			d.semestre = "otro";
 		} 
-
-		d.genero = d.sexo;
 
 		if (d.estabecimiento_tipo == "MUNICIPAL") {
 			d.dependencia = "Municipal";

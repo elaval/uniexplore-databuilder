@@ -17,7 +17,33 @@ var data = [];
 
 //var output_properties = ["id", "semestre", "genero", "sigla",  "unidad_academ_curso", "carrera", "unidad", "ano_ingreso", "prom_paa", "dependencia", "nota_final", "actividades_sakai", "actividades_aleph", "actividades_ezproxy"];
 
-var output_properties = ["id","semestre","genero","unidad","carrera","area","area_oecd","ano_ingreso", "agnosEnCarrera","prom_paa","dependencia","promedio_notas","actividades_sakai","actividades_aleph","actividades_ezproxy"];
+var output_properties = [
+	"id",
+	"semestre",
+	"genero",
+	"unidad",
+	"carrera",
+	"area",
+	"area_oecd",
+	"ano_ingreso",
+	"agnosEnCarrera",
+	"prom_paa",
+	"dependencia",
+	"promedio_notas",
+	"actividades_sakai",
+	"actividades_aleph",
+	"actividades_ezproxy",
+	"actividades_aleph_impreso",
+	"actividades_aleph_digital",
+	"actividades_aleph_espacio",
+	"actividades_sakai_test",
+	"actividades_sakai_contenido",
+	"actividades_sakai_leer",
+	"actividades_sakai_escribir",
+	"actividades_sakai_personal",
+	"actividades_sakai_informacion",
+	"actividades_sakai_total"
+	];
 
 
 var notify = function(msg) {
@@ -39,6 +65,7 @@ processor.load = function(filename) {
 		if (err) {
 			deferred.reject(new Error(err));
 		} else {
+			notify(tsvdata.substring(0,3))
 			var data = d3.tsv.parse(tsvdata);
 			deferred.resolve(data);
 		}
@@ -121,11 +148,12 @@ processor.dataSetup = function(data) {
 	var idDict = {};
 
 	_.each(data, function(d) {
-		if (!idDict[d.nro_alumno]) {
+
+		if (!idDict[d.rut]) {
 			idnum++;
-			idDict[d.nro_alumno] = idnum;
+			idDict[d.rut] = idnum;
 		} 
-		d.id =idDict[d.nro_alumno];
+		d.id =idDict[d.rut];
 
 		if (d.ano == 2012 && d.periodo == 21) {
 			d.semestre = "2012 (I)";
@@ -147,6 +175,12 @@ processor.dataSetup = function(data) {
 			d.dependencia = "S/I";
 		}
 
+		d.actividades_sakai = d.actividades_sakai_total;
+		d.actividades_aleph = d.total_actividades_aleph;
+
+		d.actividades_aleph_impreso = d.impreso_actividades_aleph;
+		d.actividades_aleph_digital = d.digital_actividades_aleph
+		d.actividades_aleph_espacio = d.espacio_actividades_aleph
 
 		d.agnosEnCarrera = d.ano-d.ano_ingreso+1;
 

@@ -4,3 +4,4 @@ cursos
 node_modules
 data/*
 inputData/*
+data old/*
